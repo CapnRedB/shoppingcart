@@ -7,7 +7,14 @@
 		<th>Information</th>
 <tr ng-repeat="item in view.dummyData">
 		<td><img ng-src="{{item.imageUrl}}" alt="" /></td>
-		<td>{{item.name}}</td>
+		<td><strong>Name: </strong>{{item.name}}<br>
+				<strong>Price: </strong>{{item.price/100 | currency}}<br>
+				<strong>Ingredients: </strong>{{item.ingredients}}<br>
+				<strong>Categories:</strong><ul><li ng-repeat="cat in item.categories">{{cat}}</li></ul><br></td>
+				<td>
+						<button class="btn btn-danger btnbar"type="button">Add To Cart</button><br>
+						<button class="btn btn-primary btnbar"type="button">Edit</button><br>
+						<button class="btn btn-warning btnbar"type="button">Remove</button></td>
 </tr>
 	</table>
 </div>

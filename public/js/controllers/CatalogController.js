@@ -137,7 +137,7 @@
 					} )
 				} )
 				console.log( $scope.view.cats );
-			}();
+			}(); //Run it as soon as the controller get's called
 	}
 
 } )()
