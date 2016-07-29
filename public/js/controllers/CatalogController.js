@@ -1,11 +1,12 @@
 ( function() {
-	angular.module( 'Catalog', [] )
+	angular.module( 'Catalog', [ 'ngRoute' ] )
 		.controller( 'CatalogController', CatalogController )
-	CatalogController.$inject = [ '$scope' ];
+	CatalogController.$inject = [ '$scope', 'ShoppingCart' ];
 
-	function CatalogController( $scope ) {
+	function CatalogController( $scope, ShoppingCart ) {
 		$scope.view = {};
 		$scope.view.cats = [];
+		$scope.ShoppingCart = ShoppingCart;
 		$scope.view.dummyData = [
 				{
 					"_id": "55c8ee82152165d244b98300",
@@ -133,7 +134,9 @@
 				console.log( "Hey I got run" );
 				$scope.view.dummyData.forEach( item => {
 					item.categories.forEach( cat => {
-						$scope.view.cats.push( cat );
+						if ( !$scope.view.cats.includes( cat ) ) {
+							$scope.view.cats.push( cat );
+						}
 					} )
 				} )
 				console.log( $scope.view.cats );

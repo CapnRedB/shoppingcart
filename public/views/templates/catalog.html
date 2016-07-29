@@ -1,20 +1,26 @@
 <div class="jumbotron see">
 	<h1>Here is your damn tea.</h1>
+	<label for="cat">Search by Category</label>
+	<select class="" name="cat" ng-model="search">
+		<option ng-value=""></option>
+		<option ng-repeat="cat in view.cats track by $index" ng-value="{{cat}}" >{{cat}}</option>
+	</select>
+	<div class="right">
+		<button href="/checkout"type="button" class="btn btn-danger">Checkout</button>
+	</div>
 </div>
 <div class="item container">
 	<table class="table">
 		<th>Tea</th>
 		<th>Information</th>
-<tr ng-repeat="item in view.dummyData">
+<tr ng-repeat="item in view.dummyData | filter:search">
 		<td><img ng-src="{{item.imageUrl}}" alt="" /></td>
 		<td><strong>Name: </strong>{{item.name}}<br>
 				<strong>Price: </strong>{{item.price/100 | currency}}<br>
 				<strong>Ingredients: </strong>{{item.ingredients}}<br>
 				<strong>Categories:</strong><ul><li ng-repeat="cat in item.categories">{{cat}}</li></ul><br></td>
 				<td>
-						<button class="btn btn-danger btnbar"type="button">Add To Cart</button><br>
-						<button class="btn btn-primary btnbar"type="button">Edit</button><br>
-						<button class="btn btn-warning btnbar"type="button">Remove</button></td>
+						<select class="" name="qty" ng-model="qty"><option ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" ng-value="num" >{{num}}</option></select><button ng-click="ShoppingCart.addItemsToCart(item, qty || 1)" class="btn btn-danger btnbar"type="button">Add To Cart</button><br></td>
 </tr>
 	</table>
 </div>
